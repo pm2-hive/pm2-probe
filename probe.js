@@ -12,8 +12,11 @@ var conf = pmx.initModule({
   show_module_meta : false,
   module_type      : 'database',
   pid              : pmx.getPID(path.join(process.env.HOME, '.pm2', 'pm2.pid')),
-  bg_color  : '#333333',
-  logo : 'https://keymetrics.io/assets/images/pm2.20d3ef.png?v=0b71a506ce'
+
+  widget : {
+    theme            : ['#111111', '#1B2228', '#807C7C', '#807C7C'],
+    logo             : 'https://keymetrics.io/assets/images/pm2.20d3ef.png?v=0b71a506ce'
+  }
 });
 
 var probe = pmx.probe();
@@ -38,11 +41,6 @@ pm2.connect(function() {
 
 pmx.action('flush pm2 logs', { comment : 'Flush logs' } , function(reply) {
   var child = shelljs.exec('pm2 flush');
-  return reply(child);
-});
-
-pmx.action('df', { comment : 'Flush logs' } , function(reply) {
-  var child = shelljs.exec('df');
   return reply(child);
 });
 
