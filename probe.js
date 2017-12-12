@@ -15,7 +15,7 @@ var conf = pmx.initModule({
 
   widget : {
     theme            : ['#111111', '#1B2228', '#807C7C', '#807C7C'],
-    logo             : 'https://keymetrics.io/assets/images/pm2.20d3ef.png?v=0b71a506ce'
+    logo             : 'https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v4.png'
   }
 });
 
@@ -41,6 +41,21 @@ pm2.connect(function() {
 
 pmx.action('flush pm2 logs', { comment : 'Flush logs' } , function(reply) {
   var child = shelljs.exec('pm2 flush');
+  return reply(child);
+});
+
+pmx.action('pm2 ls', { comment : 'Flush logs' } , function(reply) {
+  var child = shelljs.exec('pm2 ls');
+  return reply(child);
+});
+
+pmx.action('update', { comment : 'Flush logs' } , function(reply) {
+  var child = shelljs.exec('pm2 update');
+  return reply(child);
+});
+
+pmx.action('report', function(reply) {
+  var child = shelljs.exec('pm2 report');
   return reply(child);
 });
 
