@@ -5,11 +5,11 @@ var path    = require('path');
 var shelljs = require('shelljs');
 
 pmx.initModule({
+  pid: pmx.getPID(path.join(process.env.HOME, '.pm2', 'pm2.pid')),
   widget : {
     type: 'generic',
     theme: ['#1d3b4a', '#1B2228', '#22bbe2', '#22bbe2'],
     logo: 'https://raw.githubusercontent.com/Unitech/pm2/master/pres/pm2-v4.png',
-    pid: pmx.getPID(path.join(process.env.HOME, '.pm2', 'pm2.pid')),
 
     el : {
       probes  : false,
