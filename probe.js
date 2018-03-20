@@ -2,7 +2,7 @@ var pmx     = require('pmx');
 var pm2     = require('pm2');
 var fs      = require('fs');
 var path    = require('path');
-var shelljs = require('shelljs');
+const exec = require('child_process').exec;
 
 pmx.initModule({
   pid: pmx.getPID(path.join(process.env.HOME, '.pm2', 'pm2.pid')),
@@ -43,6 +43,21 @@ pm2.connect(function() {
       return pm2_procs;
     }
   });
+
+  var pm2_instances = probe.metric({name  : 'PM2 Instances Running'});
+
+  setInterval(function() {
+    exec('pgrep PM2', (err, stdout, stderr) => {
+      if (err || stderr) {
+        pm2_instances = 'N/A'
+        return;
+      }
+
+      var nb = stdout.split('\n')
+      nb.splice(-1, 1)
+      pm2_instances = nb.length;
+    });
+  }, 2000)
 });
 
 pmx.action('flush pm2 logs', { comment : 'Flush logs' } , function(reply) {
