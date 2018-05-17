@@ -1,6 +1,6 @@
 {
   "name": "pm2-probe",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "PM2 Monitoring Probe",
   "main": "probe.js",
   "scripts": {
@@ -13,6 +13,10 @@
   },
   "author": "",
   "license": "ISC",
+  "config": {
+    "aconfig-var": true,
+    "var2": false
+  },
   "apps": [
     {
       "script": "probe.js"
