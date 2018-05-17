@@ -2,7 +2,8 @@ var pmx     = require('pmx');
 var pm2     = require('pm2');
 var fs      = require('fs');
 var path    = require('path');
-const exec = require('child_process').exec;
+var exec = require('child_process').exec;
+var shelljs = require('shelljs');
 
 pmx.initModule({
   pid: pmx.getPID(path.join(process.env.HOME, '.pm2', 'pm2.pid')),
@@ -47,7 +48,7 @@ pm2.connect(function() {
   var pm2_instances = probe.metric({name  : 'PM2 Instances Running'});
 
   setInterval(function() {
-    exec('pgrep PM2', (err, stdout, stderr) => {
+    exec('pgrep PM2', function(err, stdout, stderr) {
       if (err || stderr) {
         pm2_instances = 'N/A'
         return;
