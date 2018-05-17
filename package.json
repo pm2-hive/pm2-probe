@@ -1,6 +1,6 @@
 {
   "name": "pm2-probe",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "PM2 Monitoring Probe",
   "main": "probe.js",
   "scripts": {
